@@ -1,4 +1,6 @@
+import 'package:bigbag/api/api.dart';
 import 'package:bigbag/model/user_data.dart';
+import 'package:bigbag/views/bottom_nav_page.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,6 +29,15 @@ class FirebaseController extends GetxController {
   // void getCurrentUser() {
   //   _mAuth.currentUser;
   // }
+
+  void login() async {
+    var pk = await loginUser(
+        emailController.value.text, passwordController.value.text);
+    if(pk["authorization_token"] !=null){
+      Get.offAll(BottomNavigation());
+    }
+    print(pk.toString());
+  }
 
   // void createUserAndStoreData() async {
   //   UserData userData = UserData();

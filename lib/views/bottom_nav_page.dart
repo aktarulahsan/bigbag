@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:bigbag/views/home_page.dart';
 import 'package:bigbag/views/profile_page.dart';
 import 'package:bigbag/views/wish_list_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -9,7 +10,6 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_app_ecommerce/views/profile_page.dart';
 // import 'package:flutter_app_ecommerce/views/wish_list_page.dart';
 
-import '../homePage.dart';
 import 'cart_page.dart';
 import 'drawer.dart';
 

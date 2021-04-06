@@ -1,3 +1,4 @@
+import 'package:bigbag/controllers/firebase_controller.dart';
 import 'package:bigbag/views/registration_page.dart';
 import 'package:flutter/material.dart';
 /* import 'package:flutter_app_ecommerce/controllers/firebase_controller.dart';
@@ -6,7 +7,7 @@ import 'package:get/get.dart';
 import '../main.dart';
 
 class LoginPage extends StatelessWidget {
-  //final firebaseController = Get.put(FirebaseController());
+  final firebaseController = Get.put(FirebaseController());
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +56,8 @@ class LoginPage extends StatelessWidget {
                           child: Column(
                         children: [
                           TextFormField(
-                            //controller:
-                            //firebaseController.emailController.value,
+                            controller:
+                            firebaseController.emailController.value,
                             cursorColor: Colors.grey,
                             decoration: InputDecoration(
                                 labelText: "Email",
@@ -70,8 +71,8 @@ class LoginPage extends StatelessWidget {
                             height: 10,
                           ),
                           TextFormField(
-                            // controller:
-                            //     firebaseController.passwordController.value,
+                            controller:
+                                firebaseController.passwordController.value,
                             obscureText: true,
                             cursorColor: Colors.grey,
                             decoration: InputDecoration(
@@ -89,6 +90,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       ElevatedButton(
                         onPressed: () {
+                          firebaseController.login();
                           //firebaseController.loginUser();
                         },
                         child: Container(

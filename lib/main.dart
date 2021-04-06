@@ -1,4 +1,5 @@
 import 'package:bigbag/views/bottom_nav_page.dart';
+import 'package:bigbag/views/login_page.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_app_ecommerce/views/bottom_nav_page.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: primaryColor, accentColor: primaryColor),
       title: "BigBag",
-      home: BottomNavigation(),
+      home: LoginPage(),
     );
   }
 }
