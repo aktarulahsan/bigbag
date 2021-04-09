@@ -4,15 +4,21 @@ import 'package:bigbag/views/bottom_nav_page.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 // import 'package:flutter_app_ecommerce/model/user_data.dart';
 // import 'package:flutter_app_ecommerce/views/bottom_nav_page.dart';
 import 'package:get/get.dart';
+
+import '../views/login_page.dart';
 
 class FirebaseController extends GetxController {
   final nameController = TextEditingController().obs;
   final emailController = TextEditingController().obs;
   final passwordController = TextEditingController().obs;
   final confirmPassController = TextEditingController().obs;
+  dynamic errorMessage;
+  dynamic sendingData=false;
+
 
   final List<UserData> userDataList = <UserData>[].obs;
 
@@ -92,6 +98,36 @@ class FirebaseController extends GetxController {
   //     Get.snackbar("Error", e.message);
   //   }
   // }
+  
+
+  //create new customer
+  void registerUser() async{
+    if(passwordController.value.text != confirmPassController.value.text){
+      errorMessage='The password confirmation does not match.';
+    }
+    else if(passwordController.value.text.length < 8){
+      errorMessage='The password must be at least 8 characters.';
+    }
+    else{
+      errorMessage = null;
+    }
+    sendingData=true;
+       
+     var userRegister = await registerNewUser(nameController.value.text,emailController.value.text,passwordController.value.text);
+     if(userRegister["authorization_token"] !=null){
+       sendingData=false;
+        Get.offAll(LoginPage());
+        
+     }
+     else{
+        Get.snackbar("Oops!", userRegister['errors']['email'][0],backgroundColor: Colors.redAccent,colorText: Colors.white);
+        sendingData=false;
+     }
+     
+    
+     
+  }
+
 
   void resetTextField() {
     nameController.value.text = "";

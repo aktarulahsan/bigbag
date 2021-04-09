@@ -13,3 +13,16 @@ Future loginUser(String email, String password) async {
   print(convertedDatatojson);
   return convertedDatatojson;
 }
+
+//sent data to server for create new customer
+Future registerNewUser(String name, String email, String password) async {
+  String url=BASE_URL+'customer/register';
+  final response = await http.post(url,
+        headers: {'Accept': 'Application/json'},
+        body: {'name':name, 'email':email, 'password': password, 'domain_id':'1'}
+  );
+
+   return jsonDecode(response.body);
+  
+
+}
