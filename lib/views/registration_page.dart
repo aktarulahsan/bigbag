@@ -109,14 +109,16 @@ class RegistrationPage extends StatelessWidget {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          if(firebaseController.sendingData == false){
-                             firebaseController.registerUser();
+                          if (firebaseController.sendingData == false) {
+                            firebaseController.registerUser();
                           }
                           if (firebaseController.errorMessage != null) {
-                           final snackBar = SnackBar(content: Text(firebaseController.errorMessage),backgroundColor: Colors.redAccent,);
-                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                          }                         
-                          
+                            final snackBar = SnackBar(
+                              content: Text(firebaseController.errorMessage),
+                              backgroundColor: Colors.redAccent,
+                            );
+                            //  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          }
                         },
                         child: Container(
                           width: double.infinity,

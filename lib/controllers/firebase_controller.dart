@@ -1,9 +1,11 @@
 import 'package:bigbag/api/api.dart';
+import 'package:bigbag/model/categoryModel.dart';
 import 'package:bigbag/model/user_data.dart';
 import 'package:bigbag/views/bottom_nav_page.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_app_ecommerce/model/user_data.dart';
 // import 'package:flutter_app_ecommerce/views/bottom_nav_page.dart';
@@ -19,6 +21,8 @@ class FirebaseController extends GetxController {
   dynamic errorMessage;
   dynamic sendingData=false;
 
+  var categorys = List<GetMenuCategory>().obs;
+
 
   final List<UserData> userDataList = <UserData>[].obs;
 
@@ -29,6 +33,7 @@ class FirebaseController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    getCategory();
     //getCurrentUser();
   }
 
@@ -37,13 +42,33 @@ class FirebaseController extends GetxController {
   // }
 
   void login() async {
-    var pk = await loginUser(
-        emailController.value.text, passwordController.value.text);
-    if(pk["authorization_token"] !=null){
-      Get.offAll(BottomNavigation());
-    }
-    print(pk.toString());
+    // var pk = await loginUser(
+    //     emailController.value.text, passwordController.value.text);
+    // if(pk["authorization_token"] !=null){
+    //   Get.offAll(BottomNavigation());
+    // }
+    // print(pk.toString());
+    Get.offAll(BottomNavigation());
   }
+
+  void getCategory()async{
+
+    try{
+      categorys.value= [];
+      category().then((v) {
+        // categorys.value = v.
+        categorys.assignAll(v.getMenuCategory.toList());
+        print(v.getMenuCategory.toList());
+
+      });
+
+
+    }catch(e){}
+
+
+  }
+
+
 
   // void createUserAndStoreData() async {
   //   UserData userData = UserData();

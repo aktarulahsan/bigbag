@@ -1,3 +1,4 @@
+import 'package:bigbag/controllers/firebase_controller.dart';
 import 'package:bigbag/views/trending.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,7 @@ class _HomePageState extends State<HomePage> {
     }
     return result;
   }
-
+final cont = Get.put(FirebaseController());
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey[200],
@@ -75,44 +76,79 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                             trailing: Icon(null),
-                            children: [
-                              listTile("Electronic Devices"),
-                              Divider(
-                                height: 1,
-                                color: Colors.grey[400],
-                              ),
-                              listTile("Electronic Accesories"),
-                              Divider(
-                                height: 1,
-                                color: Colors.grey[400],
-                              ),
-                              listTile("TV & Home Applinces"),
-                              Divider(
-                                height: 1,
-                                color: Colors.grey[400],
-                              ),
-                              listTile("Health & Beauty"),
-                              Divider(
-                                height: 1,
-                                color: Colors.grey[400],
-                              ),
-                              listTile("Babies & Toys"),
-                              Divider(
-                                height: 1,
-                                color: Colors.grey[400],
-                              ),
-                              listTile("Groceries & Pets"),
-                              Divider(
-                                height: 1,
-                                color: Colors.grey[400],
-                              ),
-                              listTile("Home & Lifestyle"),
-                              Divider(
-                                height: 1,
-                                color: Colors.grey[400],
-                              ),
-                              listTile("Watches & Accesories"),
-                            ],
+                            children:
+
+                              <Widget>[
+                                ListView.builder(
+                                  physics: ClampingScrollPhysics(),
+                                  itemCount: cont.categorys.length,
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                      height: 40,
+                                      child: Center(
+                                        
+                                        child:  Column(
+                                          children: [
+                                            Text(cont.categorys[index].name, textAlign: TextAlign.justify,),
+                                            Divider(
+                                              height: 1,
+                                              color: Colors.grey[400],
+                                            ),
+                                          ],
+
+                                        ),
+                                      )
+                                    )  ;
+
+
+                                      // Text(cont.categorys[index].name);
+                                    // Divider(
+                                    // height: 1,
+                                    // color: Colors.grey[400],
+                                    // ),
+                                  },
+                                  shrinkWrap: true,
+                                )
+                                ]
+
+                            // children: [
+                            //   listTile("Electronic Devices"),
+                            //   Divider(
+                            //     height: 1,
+                            //     color: Colors.grey[400],
+                            //   ),
+                            //   listTile("Electronic Accesories"),
+                            //   Divider(
+                            //     height: 1,
+                            //     color: Colors.grey[400],
+                            //   ),
+                            //   listTile("TV & Home Applinces"),
+                            //   Divider(
+                            //     height: 1,
+                            //     color: Colors.grey[400],
+                            //   ),
+                            //   listTile("Health & Beauty"),
+                            //   Divider(
+                            //     height: 1,
+                            //     color: Colors.grey[400],
+                            //   ),
+                            //   listTile("Babies & Toys"),
+                            //   Divider(
+                            //     height: 1,
+                            //     color: Colors.grey[400],
+                            //   ),
+                            //   listTile("Groceries & Pets"),
+                            //   Divider(
+                            //     height: 1,
+                            //     color: Colors.grey[400],
+                            //   ),
+                            //   listTile("Home & Lifestyle"),
+                            //   Divider(
+                            //     height: 1,
+                            //     color: Colors.grey[400],
+                            //   ),
+                            //   listTile("Watches & Accesories"),
+                            // ],
                           )),
                       SizedBox(
                         height: 15,
